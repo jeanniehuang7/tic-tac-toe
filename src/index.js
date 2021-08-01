@@ -2,30 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// class Square extends React.Component {
-//   render() {
-//     return (
-//     //   <button className="square" onClick={function(){alert('click');}}>
-//     // <button className="square" onClick={()=>alert('click')}>
-//     <button className="square"
-//         onClick={()=>this.props.onClick()}>
-//         {this.props.value}
-//     </button>
-//     );
-//   }
-// }
-
-// function components: components with only a render(), simpler
-
-// function Square(props) {
-//   return (
-//     <button
-//       className="square" onClick={props.onClick}>
-//       {props.value}
-//     </button>
-//   );
-// }
-
 class Square extends React.Component {
   render() {
     return (
@@ -51,20 +27,9 @@ class Board extends React.Component {
 
   render() {
 
-    // const boardComponents = [0,1,2,3,4,5,6,7,8].map((i) => {
-    //     let 
-    //     if ((i+1) % 3 ===0) {
-
-    //     }
-    // });
-
-    // const boardRow = [0,1,2].map((j)=> {
-    //     return <div key={j} className="board-row">{this.renderSquare(i)}</div>
-    // });
     let boardComponents = [];
     for (let i = 0; i < 3; i++) {
       let boardRow = [];
-      //debugger;
       for (let j = 0; j < 3; j++) {
         boardRow.push(<span key={3 * i + j}>{this.renderSquare(3 * i + j)}</span>)
       }
@@ -74,21 +39,6 @@ class Board extends React.Component {
     return (
       <div>
         {boardComponents}
-        {/* <div className="board-row">
-           {this.renderSquare(0)}
-           {this.renderSquare(1)}
-           {this.renderSquare(2)}
-         </div>
-         <div className="board-row">
-           {this.renderSquare(3)}
-           {this.renderSquare(4)}
-           {this.renderSquare(5)}
-         </div>
-         <div className="board-row">
-           {this.renderSquare(6)}
-           {this.renderSquare(7)}
-           {this.renderSquare(8)}
-         </div> */}
       </div>
     );
   }
@@ -156,15 +106,12 @@ class Game extends React.Component {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        debugger;
-        // this.setState((previousState) => ({
-        //   winnerSquares: previousState.winnerSquares.concat([a, b, c]),
-        // }));
+        // debugger;
         console.log("hello");
 
-        this.setState({
-          winnerSquares: [...this.state.winnerSquares, a, b, c]
-        })
+        // this.setState({
+        //   winnerSquares: [...this.state.winnerSquares, a, b, c]
+        // })
 
         return {
           winnerStr: squares[a],
@@ -198,10 +145,10 @@ class Game extends React.Component {
     const winnerInfo = this.calculateWinner(squares);
     if (winnerInfo || squares[i]) {
       if (winnerInfo.location) {
-        this.setState({
-          winnerSquares: [...this.state.winnerSquares,
-          winnerInfo.location[0], winnerInfo.location[1], winnerInfo.location[2],]
-        })
+        // this.setState({
+        //   winnerSquares: [...this.state.winnerSquares,
+        //   winnerInfo.location[0], winnerInfo.location[1], winnerInfo.location[2],]
+        // })
       }
 
       return;
@@ -288,7 +235,7 @@ class Game extends React.Component {
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
-            winnerSquares={this.state.winnerSquares}
+            winnerSquares={winnerInfo ? winnerInfo.location : []} 
           />
         </div>
         <div className="game-info">
