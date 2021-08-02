@@ -106,13 +106,7 @@ class Game extends React.Component {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        // debugger;
         console.log("hello");
-
-        // this.setState({
-        //   winnerSquares: [...this.state.winnerSquares, a, b, c]
-        // })
-
         return {
           winnerStr: squares[a],
           location: [a, b, c]
@@ -144,13 +138,8 @@ class Game extends React.Component {
     // ignore click if there is winner or already present move
     const winnerInfo = this.calculateWinner(squares);
     if (winnerInfo || squares[i]) {
-      if (winnerInfo.location) {
-        // this.setState({
-        //   winnerSquares: [...this.state.winnerSquares,
-        //   winnerInfo.location[0], winnerInfo.location[1], winnerInfo.location[2],]
-        // })
-      }
-
+      // if (winnerInfo.location) {
+      // }
       return;
     }
 
@@ -235,7 +224,7 @@ class Game extends React.Component {
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
-            winnerSquares={winnerInfo ? winnerInfo.location : []} 
+            winnerSquares={winnerInfo && winnerInfo.location ? winnerInfo.location : []}
           />
         </div>
         <div className="game-info">
